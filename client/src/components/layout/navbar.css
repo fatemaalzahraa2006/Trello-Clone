@@ -1,0 +1,143 @@
+
+.navbar {
+  height: 60px;
+  width: 100%;
+  padding: 0 24px;
+
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* .navbar-logo {
+  color: var(--color-primary);
+  font-size: 22px;
+  font-weight: 700;
+} */
+ 
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-link {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.navbar-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  width: 280px;
+  margin-left: auto;
+  padding: 8px 12px;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  color: var(--color-text-muted);
+}
+
+.navbar-search input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-text);
+}
+
+.navbar-search input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.navbar-profile {
+  position: relative;
+}
+
+.navbar-profile-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 4px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 100;
+
+  width: 220px;
+  padding: 8px;
+
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.profile-dropdown-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.profile-dropdown-user p {
+  font-weight: 600;
+}
+
+.profile-dropdown-user span {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.profile-dropdown-divider {
+  height: 1px;
+  margin: 6px 0;
+  background-color: var(--color-border);
+}
+
+.profile-dropdown a,
+.profile-dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+  padding: 10px;
+
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+
+  color: var(--color-text);
+  font-size: 14px;
+  text-align: left;
+}
+
+.profile-dropdown a:hover,
+.profile-dropdown button:hover {
+  background-color: var(--color-background-secondary);
+}
+
+@media (max-width: 650px) {
+  .navbar {
+    gap: 12px;
+    padding: 0 12px;
+  }
+
+  .navbar-search {
+    display: none;
+  }
+}

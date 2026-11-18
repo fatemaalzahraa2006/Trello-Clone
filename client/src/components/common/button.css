@@ -1,0 +1,76 @@
+
+/* Base button */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: background-color 0.2s ease,
+              border-color 0.2s ease;
+}
+
+/* Button sizes */
+
+.btn-small {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.btn-medium {
+  padding: 9px 16px;
+  font-size: 14px;
+}
+
+.btn-large {
+  padding: 12px 20px;
+  font-size: 16px;
+}
+
+/* Primary button */
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
+
+/* Secondary button */
+
+.btn-secondary {
+  background-color: var(--color-background-secondary);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #ebecf0;
+}
+
+/* Danger button */
+
+.btn-danger {
+  background-color: var(--color-danger);
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: #ae2e24;
+}
+
+/* Disabled state */
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
