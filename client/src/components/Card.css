@@ -1,0 +1,71 @@
+.card {
+  position: relative;
+  background: white;
+  color: #172b4d;
+  text-align: left;
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.card-labels { display: flex; gap: 4px; margin-bottom: 4px; }
+.label { width: 40px; height: 8px; border-radius: 4px; }
+.card-title { margin: 0; font-size: 14px; }
+.card-footer {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  color: #626f86;
+  margin-top: 4px;
+}
+.badge { display: inline-flex; align-items: center; gap: 4px; }
+
+.card-edit-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: none;
+  background: #f1f2f4;
+  border: none;
+  border-radius: 4px;
+  padding: 4px;
+  color: #44546f;
+  cursor: pointer;
+}
+.card:hover .card-edit-btn { display: flex; }
+.card-edit-btn:hover { background: #dcdfe4; }
+
+.card.editing { cursor: default; }
+.card.editing textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 56px;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: inherit;
+  font-size: 14px;
+  color: #172b4d;
+  background: white;
+}
+.card-edit-actions { display: flex; gap: 8px; margin-top: 8px; }
+.card-save {
+  background: #0c66e4;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.card-delete {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f1f2f4;
+  color: #ae2e24;
+  border: none;
+  border-radius: 3px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
