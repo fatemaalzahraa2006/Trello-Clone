@@ -16,7 +16,7 @@
 // }
 
 // export default App
-
+import BoardPage from './pages/boards/boardPage'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import ProfileEdit from './pages/profile/ProfileEdit'
 import AppLayout from './components/layout/AppLayout'
@@ -39,8 +39,10 @@ function App() {
         <Route element={<AppLayout />}>
           <Route path="/" element={<Navigate to="/boards" replace />} />
           <Route path="/boards" element={<Boards />} />
+          <Route path="/boards/:boardId" element={<BoardPage />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/edit" element={<ProfileEdit />} />
+          
         </Route>
       </Route>
 

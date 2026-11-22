@@ -1,4 +1,4 @@
-
+import { BoardsProvider } from './context/BoardsContext'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
@@ -11,10 +11,12 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <ToastProvider>
-          <App />
-        </ToastProvider>
-      </AuthProvider>
+  <ToastProvider>
+    <BoardsProvider>
+      <App />
+    </BoardsProvider>
+  </ToastProvider>
+</AuthProvider>
     </BrowserRouter>
   </StrictMode>,
 )
