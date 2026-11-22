@@ -1,10 +1,27 @@
 import { useState } from "react";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import { Clock, MessageSquare, Pencil, Trash2 } from "lucide-react";
 import "./Card.css";
 
 export default function Card({ card, onClick, onUpdate, onDelete }) {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(card.title);
+
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: card.id, disabled: isEditing });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.4 : 1,
+  };
 
   function save() {
     const trimmed = title.trim();
@@ -15,7 +32,7 @@ export default function Card({ card, onClick, onUpdate, onDelete }) {
 
   if (isEditing) {
     return (
-      <div className="card editing">
+      <div ref={setNodeRef} style={style} className="card editing">
         <textarea
           autoFocus
           value={title}
@@ -42,9 +59,17 @@ export default function Card({ card, onClick, onUpdate, onDelete }) {
   }
 
   return (
-    <div className="card" onClick={() => onClick?.(card.id)}>
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className="card"
+      onClick={() => onClick?.(card.id)}
+    >
       <button
         className="card-edit-btn"
+        onPointerDown={(e) => e.stopPropagation()}
         onClick={(e) => {
           e.stopPropagation();
           setTitle(card.title);
