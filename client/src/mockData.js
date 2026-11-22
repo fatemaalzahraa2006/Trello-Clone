@@ -6,7 +6,7 @@ export const mockCards = [
     position: 1,
     labels: [{ id: "lb1", name: "Frontend", color: "#61bd4f" }],
     dueDate: "2026-12-01",
-    assignees: [{ id: "u1", name: "Sara" }],
+    assignees: [{ id: "u1", name: "Sara Ali" }, { id: "u2", name: "Omar" }],
     commentCount: 2,
   },
   {
@@ -16,7 +16,7 @@ export const mockCards = [
     position: 2,
     labels: [],
     dueDate: null,
-    assignees: [],
+    assignees: [{ id: "u2", name: "Omar" }],
     commentCount: 0,
   },
 ];

@@ -3,7 +3,15 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Clock, MessageSquare, Pencil, Trash2 } from "lucide-react";
 import "./Card.css";
-
+function getInitials(name = "") {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .map((word) => word[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
 export default function Card({ card, onClick, onUpdate, onDelete }) {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(card.title);
@@ -84,14 +92,25 @@ export default function Card({ card, onClick, onUpdate, onDelete }) {
         ))}
       </div>
       <p className="card-title">{card.title}</p>
-      <div className="card-footer">
-        {card.dueDate && (
-          <span className="badge"><Clock size={12} /> {card.dueDate}</span>
-        )}
-        {card.commentCount > 0 && (
-          <span className="badge"><MessageSquare size={12} /> {card.commentCount}</span>
-        )}
-      </div>
+           {(card.dueDate || card.commentCount > 0 || card.assignees.length > 0) && (
+        <div className="card-footer">
+          {card.dueDate && (
+            <span className="badge"><Clock size={12} /> {card.dueDate}</span>
+          )}
+          {card.commentCount > 0 && (
+            <span className="badge"><MessageSquare size={12} /> {card.commentCount}</span>
+          )}
+          {card.assignees.length > 0 && (
+            <div className="card-assignees">
+              {card.assignees.map((a) => (
+                <span key={a.id} className="avatar" title={a.name}>
+                  {getInitials(a.name)}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
