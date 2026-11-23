@@ -1,5 +1,6 @@
 import { useState } from "react";
 import List from "./List";
+import "./board.css";
 
 // TEMPORARY mock lists. Later: useBoardLists hook, then real data.
 const initialLists = [
