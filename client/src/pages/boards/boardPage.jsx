@@ -1,3 +1,4 @@
+import BoardCanvas from '../../components/board/BoardCanvas'
 import BoardHeader from '../../components/boards/BoardHeader'
 import { useParams } from 'react-router-dom'
 //import mockBoards from '../../data/mockBoards'
@@ -35,8 +36,10 @@ const handleUpdateTitle = (newTitle) => {
   board={board}
   onUpdateTitle={handleUpdateTitle}
 />
+    <BoardCanvas boardId={board.id} />
     </div>
   )
 }
+
 
 export default BoardPage
