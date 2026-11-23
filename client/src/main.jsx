@@ -1,10 +1,22 @@
+import { BoardsProvider } from './context/BoardsContext'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import { ToastProvider } from './context/ToastContext'
+import { AuthProvider } from './context/AuthContext'
 import './index.css'
 import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <BrowserRouter>
+      <AuthProvider>
+  <ToastProvider>
+    <BoardsProvider>
+      <App />
+    </BoardsProvider>
+  </ToastProvider>
+</AuthProvider>
+    </BrowserRouter>
   </StrictMode>,
 )
