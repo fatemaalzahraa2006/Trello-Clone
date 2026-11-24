@@ -28,28 +28,36 @@ function Boards() {
 </button>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px' }}>
-        {yourBoards.map((board) => (
-          <BoardCard
-            key={board.id}
-            id={board.id}
-            title={board.title}
-            background={board.background}
-          />
-        ))}
+        {yourBoards.length === 0 ? (
+  <p>You haven't created any boards yet.</p>
+) : (
+  yourBoards.map((board) => (
+    <BoardCard
+      key={board.id}
+      id={board.id}
+      title={board.title}
+      background={board.background}
+    />
+  ))
+)}
       </div>
       
 
       <h2>Shared with you</h2>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px' }}>
-        {sharedBoards.map((board) => (
-          <BoardCard
-            key={board.id}
-            id={board.id}
-            title={board.title}
-            background={board.background}
-          />
-        ))}
+        {sharedBoards.length === 0 ? (
+  <p>No boards have been shared with you yet.</p>
+) : (
+  sharedBoards.map((board) => (
+    <BoardCard
+      key={board.id}
+      id={board.id}
+      title={board.title}
+      background={board.background}
+    />
+  ))
+)}
       </div>
       {isModalOpen && (
   <CreateBoardModal
