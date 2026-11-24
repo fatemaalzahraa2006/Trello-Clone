@@ -1,33 +1,14 @@
 /* Board page: fills the screen, canvas scrolls sideways inside it */
-.board-page {
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 60px);
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  text-align: left;
-  box-sizing: border-box;
-}
 
-.board-header-slot {
-  flex: 0 0 auto;
-  padding: 12px 16px;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 700;
-  background: rgba(0, 0, 0, 0.24);
-}
 
 /* Horizontal canvas */
 .board-canvas {
-  flex: 1 1 auto;
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding: 12px 16px;
+  margin-top: 16px;
+  padding-bottom: 12px;
   overflow-x: auto;
-  overflow-y: hidden;
 }
 
 /* List (column) */
@@ -39,6 +20,7 @@
   background: #ebecf0;
   border-radius: 3px;
   color: #172b4d;
+  max-height: calc(100vh - 220px); /*long list scrolls inside itself.*/
 }
 
 .list-header {
@@ -95,4 +77,52 @@
   border-radius: 3px;
   box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
   font-size: 14px;
+}
+
+/* Add another list */
+.add-list-slot {
+  flex: 0 0 272px;
+}
+
+.add-list-trigger {
+  width: 100%;
+  padding: 10px 12px;
+  text-align: left;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.24);
+  border: none;
+  border-radius: 3px;
+}
+
+.add-list-trigger:hover {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.add-list-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  background: #ebecf0;
+  border-radius: 3px;
+}
+
+.add-list-form input {
+  padding: 8px;
+  border: 2px solid #0c66e4;
+  border-radius: 3px;
+}
+
+.add-list-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.add-list-cancel {
+  font-size: 22px;
+  line-height: 1;
+  color: #5e6c84;
+  background: transparent;
+  border: none;
 }
