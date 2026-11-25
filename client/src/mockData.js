@@ -19,4 +19,29 @@ export const mockCards = [
     assignees: [{ id: "u2", name: "Omar" }],
     commentCount: 0,
   },
+  {
+    id: "c3",
+    listId: "l2",
+    title: "Write API docs",
+    position: 1,
+    labels: [{ id: "lb2", name: "Docs", color: "#f2d600" }],
+    dueDate: null,
+    assignees: [],
+    commentCount: 1,
+  },
+  {
+    id: "c4",
+    listId: "l2",
+    title: "Review pull requests",
+    position: 2,
+    labels: [],
+    dueDate: null,
+    assignees: [{ id: "u1", name: "Sara Ali" }],
+    commentCount: 0,
+  },
+];
+
+export const mockLists = [
+  { id: "l1", title: "To Do" },
+  { id: "l2", title: "In Progress" },
 ];
