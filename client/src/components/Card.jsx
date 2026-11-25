@@ -35,7 +35,6 @@ export default function Card({ card, onClick, onUpdate, onDelete }) {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    opacity: isDragging ? 0.4 : 1,
   };
 
   function save() {
@@ -79,7 +78,7 @@ export default function Card({ card, onClick, onUpdate, onDelete }) {
       style={style}
       {...attributes}
       {...listeners}
-      className="card"
+      className={"card" + (isDragging ? " card-placeholder" : "")}
       onClick={() => onClick?.(card.id)}
     >
       <button
