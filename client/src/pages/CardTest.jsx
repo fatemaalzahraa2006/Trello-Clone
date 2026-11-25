@@ -13,8 +13,9 @@ import { BoardProvider, useBoard } from "../context/BoardContext";
 import { mockLists } from "../mockData";
 import Card from "../components/Card";
 import AddCard from "../components/AddCard";
+import CardModal from "../components/CardModal";
 
-function List({ list }) {
+function List({ list, onCardClick }) {
   const { getCardsByList, addCard, updateCard, deleteCard } = useBoard();
   const cards = getCardsByList(list.id);
 
@@ -32,7 +33,14 @@ function List({ list }) {
         alignSelf: "flex-start",
       }}
     >
-      <h3 style={{ margin: "4px 8px 12px", fontSize: 14, color: "#172b4d", textAlign: "left" }}>
+      <h3
+        style={{
+          margin: "4px 8px 12px",
+          fontSize: 14,
+          color: "#172b4d",
+          textAlign: "left",
+        }}
+      >
         {list.title}
       </h3>
       <SortableContext
@@ -43,7 +51,7 @@ function List({ list }) {
           <Card
             key={c.id}
             card={c}
-            onClick={(id) => console.log("clicked", id)}
+            onClick={onCardClick}
             onUpdate={updateCard}
             onDelete={deleteCard}
           />
@@ -57,6 +65,7 @@ function List({ list }) {
 function Board() {
   const { cards, moveCard, getCardsByList } = useBoard();
   const [activeId, setActiveId] = useState(null);
+  const [openCardId, setOpenCardId] = useState(null);
   const activeCard = cards.find((c) => c.id === activeId);
 
   const sensors = useSensors(
@@ -77,7 +86,6 @@ function Board() {
       ? targetCards.length
       : targetCards.findIndex((c) => c.id === over.id);
 
-    // Same list, moving down: account for the dragged card leaving its slot
     const activeCardData = cards.find((c) => c.id === active.id);
     if (activeCardData.listId === toListId && !overIsList) {
       const oldIndex = targetCards.findIndex((c) => c.id === active.id);
@@ -98,12 +106,15 @@ function Board() {
     >
       <div style={{ display: "flex", gap: 16, margin: 40 }}>
         {mockLists.map((l) => (
-          <List key={l.id} list={l} />
+          <List key={l.id} list={l} onCardClick={setOpenCardId} />
         ))}
       </div>
       <DragOverlay>
         {activeCard ? <Card card={activeCard} /> : null}
       </DragOverlay>
+      {openCardId && (
+        <CardModal cardId={openCardId} onClose={() => setOpenCardId(null)} />
+      )}
     </DndContext>
   );
 }
