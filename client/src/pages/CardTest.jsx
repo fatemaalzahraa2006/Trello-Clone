@@ -4,6 +4,8 @@ import {
   DragOverlay,
   closestCorners,
   PointerSensor,
+  TouchSensor,
+  KeyboardSensor,
   useSensor,
   useSensors,
   useDroppable,
@@ -74,9 +76,13 @@ function Board() {
   const [composerListId, setComposerListId] = useState(null);
   const activeCard = cards.find((c) => c.id === activeId);
 
-  const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
-  );
+ const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(TouchSensor, {
+        activationConstraint: { delay: 200, tolerance: 8 },
+    }),
+    useSensor(KeyboardSensor)
+    );
 
   function handleDragEnd({ active, over }) {
     setActiveId(null);
