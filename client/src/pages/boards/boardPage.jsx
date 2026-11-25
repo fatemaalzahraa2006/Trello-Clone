@@ -1,3 +1,4 @@
+import BoardCanvas from '../../components/board/BoardCanvas'
 import { useAuth } from '../../context/AuthContext'
 import BoardHeader from '../../components/boards/BoardHeader'
 import { useParams , useNavigate  } from 'react-router-dom'
@@ -99,6 +100,7 @@ const handleDeleteBoard = () => {
   onRemoveMember={handleRemoveMember}
   onDeleteBoard={handleDeleteBoard}
 />
+  <BoardCanvas boardId={board.id} /> 
     </div>
   )
 }

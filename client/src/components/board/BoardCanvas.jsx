@@ -1,5 +1,7 @@
+import { useState } from "react";
 import List from "./List";
-import AddListForm from "./addListForm";
+import AddListForm from "./AddListForm";
+import DeleteListModal from "./DeleteListModal";
 import useBoardLists from "../../hooks/useBoardLists";
 import "./board.css";
 
@@ -14,12 +16,31 @@ function DummyCards({ list }) {
 }
 
 export default function BoardCanvas({ boardId, renderCards }) {
-  const { lists, addList } = useBoardLists(boardId);
+  const { lists, addList, renameList, deleteList, reorderLists } =
+    useBoardLists(boardId);
+  const [listToDelete, setListToDelete] = useState(null);
+
+  const confirmDelete = () => {
+    deleteList(listToDelete.id);
+    setListToDelete(null);
+  };
 
   return (
     <div className="board-canvas">
-      {lists.map((list) => (
-        <List key={list.id} list={list} cardCount={2}>
+      {lists.map((list, index) => (
+        <List
+          key={list.id}
+          list={list}
+          cardCount={2}
+          actions={{
+            onRename: renameList,
+            onDeleteRequest: () => setListToDelete(list),
+            onMoveLeft: () => reorderLists(list.id, lists[index - 1].id),
+            onMoveRight: () => reorderLists(list.id, lists[index + 1].id),
+            canMoveLeft: index > 0,
+            canMoveRight: index < lists.length - 1,
+          }}
+        >
           {renderCards ? renderCards(list) : <DummyCards list={list} />}
         </List>
       ))}
@@ -27,6 +48,13 @@ export default function BoardCanvas({ boardId, renderCards }) {
       <div className="add-list-slot">
         <AddListForm onAdd={addList} />
       </div>
+
+      <DeleteListModal
+        list={listToDelete}
+        isOpen={listToDelete !== null}
+        onCancel={() => setListToDelete(null)}
+        onConfirm={confirmDelete}
+      />
     </div>
   );
 }
