@@ -15,7 +15,7 @@ import Card from "../components/Card";
 import AddCard from "../components/AddCard";
 import CardModal from "../components/CardModal";
 
-function List({ list, onCardClick }) {
+function List({ list, onCardClick, composerOpen, onOpenComposer, onCloseComposer }) {
   const { getCardsByList, addCard, updateCard, deleteCard } = useBoard();
   const cards = getCardsByList(list.id);
 
@@ -57,7 +57,12 @@ function List({ list, onCardClick }) {
           />
         ))}
       </SortableContext>
-      <AddCard onAdd={(title) => addCard(list.id, title)} />
+      <AddCard
+        isOpen={composerOpen}
+        onOpen={onOpenComposer}
+        onClose={onCloseComposer}
+        onAdd={(title) => addCard(list.id, title)}
+      />
     </div>
   );
 }
@@ -66,6 +71,7 @@ function Board() {
   const { cards, moveCard, getCardsByList } = useBoard();
   const [activeId, setActiveId] = useState(null);
   const [openCardId, setOpenCardId] = useState(null);
+  const [composerListId, setComposerListId] = useState(null);
   const activeCard = cards.find((c) => c.id === activeId);
 
   const sensors = useSensors(
@@ -106,7 +112,14 @@ function Board() {
     >
       <div style={{ display: "flex", gap: 16, margin: 40 }}>
         {mockLists.map((l) => (
-          <List key={l.id} list={l} onCardClick={setOpenCardId} />
+          <List
+            key={l.id}
+            list={l}
+            onCardClick={setOpenCardId}
+            composerOpen={composerListId === l.id}
+            onOpenComposer={() => setComposerListId(l.id)}
+            onCloseComposer={() => setComposerListId(null)}
+          />
         ))}
       </div>
       <DragOverlay>

@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Plus, X } from "lucide-react";
 import "./AddCard.css";
 
-export default function AddCard({ onAdd }) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function AddCard({ isOpen, onOpen, onClose, onAdd }) {
   const [title, setTitle] = useState("");
 
   function submit() {
@@ -15,12 +14,12 @@ export default function AddCard({ onAdd }) {
 
   function cancel() {
     setTitle("");
-    setIsOpen(false);
+    onClose();
   }
 
   if (!isOpen) {
     return (
-      <button className="add-card-btn" onClick={() => setIsOpen(true)}>
+      <button className="add-card-btn" onClick={onOpen}>
         <Plus size={16} /> Add a card
       </button>
     );
