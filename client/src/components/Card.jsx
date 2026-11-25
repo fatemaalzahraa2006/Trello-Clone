@@ -12,6 +12,13 @@ function getInitials(name = "") {
     .slice(0, 2)
     .toUpperCase();
 }
+function getDueState(dueDate, completed) {
+  if (completed) return "complete";
+  const diff = new Date(dueDate) - new Date();
+  if (diff < 0) return "overdue";
+  if (diff < 24 * 60 * 60 * 1000) return "soon";
+  return "upcoming";
+}
 export default function Card({ card, onClick, onUpdate, onDelete }) {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(card.title);
@@ -95,8 +102,10 @@ export default function Card({ card, onClick, onUpdate, onDelete }) {
            {(card.dueDate || card.commentCount > 0 || card.assignees.length > 0) && (
         <div className="card-footer">
           {card.dueDate && (
-            <span className="badge"><Clock size={12} /> {card.dueDate}</span>
-          )}
+           <span className={"badge due-" + getDueState(card.dueDate, card.completed)}>
+            <Clock size={12} /> {card.dueDate}
+            </span>
+        )}
           {card.commentCount > 0 && (
             <span className="badge"><MessageSquare size={12} /> {card.commentCount}</span>
           )}
