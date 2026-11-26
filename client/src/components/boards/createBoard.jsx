@@ -21,7 +21,7 @@ const handleCreate = () => {
 }
   const newBoard = {
     id: Date.now(),
-    title: title,
+    title: title.trim(),
     background: background,
     owner: owner,
     members: [owner]
