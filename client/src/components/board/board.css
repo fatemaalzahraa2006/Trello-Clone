@@ -203,3 +203,47 @@
 .list-menu-dropdown .menu-danger {
   color: #c9372c;
 }
+/* Loading skeleton */
+.list-skeleton {
+  flex: 0 0 272px;
+  gap: 8px;
+  padding: 10px 8px;
+}
+
+.skeleton-bar {
+  background: #dcdfe4;
+  border-radius: 3px;
+  animation: skeleton-pulse 1.2s ease-in-out infinite;
+}
+
+.skeleton-title {
+  width: 40%;
+  height: 16px;
+  margin: 0 4px 6px;
+}
+
+.skeleton-card {
+  height: 36px;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+/* Empty board */
+.empty-board {
+  flex: 0 0 272px;
+  padding: 12px;
+  color: #fff;
+}
+
+.empty-board h2 {
+  margin-bottom: 4px;
+  font-size: 16px;
+}
+
+.empty-board p {
+  font-size: 14px;
+  opacity: 0.9;
+}

@@ -4,6 +4,10 @@ import AddListForm from "./AddListForm";
 import DeleteListModal from "./DeleteListModal";
 import useBoardLists from "../../hooks/useBoardLists";
 import "./board.css";
+//////
+import ListSkeleton from "./ListSkeleton";
+import EmptyBoard from "./EmptyBoard";
+//////
 
 // TEMPORARY stand-in for M4's Card.
 function DummyCards({ list }) {
@@ -16,7 +20,7 @@ function DummyCards({ list }) {
 }
 
 export default function BoardCanvas({ boardId, renderCards }) {
-  const { lists, addList, renameList, deleteList, reorderLists } =
+  const { lists , isLoading, addList, renameList, deleteList, reorderLists } =
     useBoardLists(boardId);
   const [listToDelete, setListToDelete] = useState(null);
 
@@ -24,9 +28,23 @@ export default function BoardCanvas({ boardId, renderCards }) {
     deleteList(listToDelete.id);
     setListToDelete(null);
   };
+  /////
+   if (isLoading) {
+    return (
+      <div className="board-canvas">
+        <ListSkeleton />
+        <ListSkeleton cards={3} />
+        <ListSkeleton cards={1} />
+      </div>
+    );
+  }
+  /////
 
   return (
     <div className="board-canvas">
+      {/* If there are no lists, show the empty board */}
+      {lists.length === 0 && <EmptyBoard />}
+      {/* ////////////// */}
       {lists.map((list, index) => (
         <List
           key={list.id}

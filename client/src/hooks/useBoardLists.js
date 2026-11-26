@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // TEMPORARY mock lists. Replaced by real data when the backend exists.
 const initialLists = [
@@ -11,6 +11,16 @@ export default function useBoardLists(boardId) {
   const [lists, setLists] = useState(() =>
     initialLists.map((list) => ({ ...list, boardId }))
   );
+    // TEMPORARY: fake loading delay so the skeleton can be seen.
+  // Remove this when real data comes from the backend.
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => setIsLoading(false), 600);
+    return () => clearTimeout(timer);
+  }, [boardId]);
+
+
 
   const sortedLists = [...lists].sort((a, b) => a.position - b.position);
 
@@ -56,5 +66,5 @@ export default function useBoardLists(boardId) {
     });
   };
 
-  return { lists: sortedLists, addList, renameList, deleteList, reorderLists };
+  return { lists: sortedLists,isLoading, addList, renameList, deleteList, reorderLists };
 }
