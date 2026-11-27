@@ -247,3 +247,47 @@
   font-size: 14px;
   opacity: 0.9;
 }
+
+/* 4th day - dragn  n drop */
+.sortable-list {
+  flex: 0 0 min(272px, 85vw);
+  border-radius: 3px;
+}
+
+.sortable-list > .list {
+  width: 100%;
+  max-height: calc(100vh - 220px);
+}
+
+/* The slot left behind while a list is being dragged */
+.sortable-list.is-dragging {
+  background: rgba(9, 30, 66, 0.25);
+}
+
+.sortable-list.is-dragging > .list {
+  visibility: hidden;
+}
+
+.list-header {
+  cursor: grab;
+  touch-action: manipulation;
+}
+
+/* The copy that follows the pointer */
+.list-overlay {
+  width: min(272px, 85vw);
+  transform: rotate(3deg);
+  cursor: grabbing;
+  box-shadow: 0 8px 16px rgba(9, 30, 66, 0.35);
+}
+
+.list-overlay .list {
+  width: 100%;
+}
+
+/* Responsive widths for the other slots */
+.add-list-slot,
+.empty-board,
+.list-skeleton {
+  flex: 0 0 min(272px, 85vw);
+}

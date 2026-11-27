@@ -4,6 +4,7 @@ import ListActionsMenu from "./ListActionsMenu";
 export default function ListHeader({
   list,
   cardCount,
+  dragHandle,
   onRename,
   onDeleteRequest,
   onMoveLeft,
@@ -36,7 +37,12 @@ export default function ListHeader({
   };
 
   return (
-    <div className="list-header">
+    <div className="list-header" 
+      ref={dragHandle?.ref}
+      {...dragHandle?.attributes}
+      // No drag listeners while editing, so text can be selected with the mouse.
+      {...(isEditing ? {} : dragHandle?.listeners)}>
+        
       {isEditing ? (
         <input
           className="list-title-input"
