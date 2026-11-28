@@ -1,0 +1,53 @@
+.summarize-section {
+  margin: 12px 0;
+  color: #172b4d;
+  font-size: 14px;
+}
+
+.summarize-section button {
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 4px;
+  background: #f1f2f4;
+  color: #172b4d;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.summarize-section button:hover {
+  background: #dcdfe4;
+}
+
+.summary-loading {
+  color: #626f86;
+}
+
+.summary-panel,
+.summary-error {
+  padding: 12px 16px;
+  border-radius: 8px;
+}
+
+.summary-panel {
+  border: 1px solid #dcdfe4;
+  background: #f7f8f9;
+}
+
+.summary-panel h4 {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.summary-panel p {
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+.summary-error {
+  background: #ffeceb;
+  color: #ae2e24;
+}
+
+.summary-error p {
+  margin: 0 0 8px;
+}

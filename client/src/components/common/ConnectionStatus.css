@@ -1,0 +1,9 @@
+.conn-status {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600; color: #44546f;
+  background: #f1f2f4; padding: 4px 8px; border-radius: 12px;
+}
+.conn-dot { width: 8px; height: 8px; border-radius: 50%; background: #8590a2; }
+.conn-connected .conn-dot { background: #4bce97; }
+.conn-connecting .conn-dot { background: #f5cd47; }
+.conn-offline .conn-dot { background: #f87168; }
